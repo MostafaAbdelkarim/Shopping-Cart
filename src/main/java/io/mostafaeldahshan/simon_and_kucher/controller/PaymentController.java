@@ -41,7 +41,7 @@ public class PaymentController {
 
     @PostMapping
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<UUID> createPayment(@RequestBody @Valid final PaymentDTO paymentDTO) {
+    public ResponseEntity<Long> createPayment(@RequestBody @Valid final PaymentDTO paymentDTO) {
         return new ResponseEntity<>(paymentService.create(paymentDTO), HttpStatus.CREATED);
     }
 

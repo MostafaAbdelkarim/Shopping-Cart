@@ -28,26 +28,26 @@ public class CategoryService {
                 .collect(Collectors.toList());
     }
 
-    public CategoryDTO get(final UUID id) {
+    public CategoryDTO get(final Long id) {
         return categoryRepository.findById(id)
                 .map(category -> mapToDTO(category, new CategoryDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public UUID create(final CategoryDTO categoryDTO) {
+    public Long create(final CategoryDTO categoryDTO) {
         final Category category = new Category();
         mapToEntity(categoryDTO, category);
         return categoryRepository.save(category).getId();
     }
 
-    public void update(final UUID id, final CategoryDTO categoryDTO) {
+    public void update(final Long id, final CategoryDTO categoryDTO) {
         final Category category = categoryRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(categoryDTO, category);
         categoryRepository.save(category);
     }
 
-    public void delete(final UUID id) {
+    public void delete(final Long id) {
         categoryRepository.deleteById(id);
     }
 

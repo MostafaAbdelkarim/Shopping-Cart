@@ -36,18 +36,18 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable final UUID id) {
+    public ResponseEntity<CustomerDTO> getCustomer(@PathVariable final Long id) {
         return ResponseEntity.ok(customerService.get(id));
     }
 
     @PostMapping
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<UUID> createCustomer(@RequestBody @Valid final CustomerDTO customerDTO) {
+    public ResponseEntity<Long> createCustomer(@RequestBody @Valid final CustomerDTO customerDTO) {
         return new ResponseEntity<>(customerService.create(customerDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCustomer(@PathVariable final UUID id,
+    public ResponseEntity<Void> updateCustomer(@PathVariable final Long id,
             @RequestBody @Valid final CustomerDTO customerDTO) {
         customerService.update(id, customerDTO);
         return ResponseEntity.ok().build();
@@ -55,7 +55,7 @@ public class CustomerController {
 
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable final UUID id) {
+    public ResponseEntity<Void> deleteCustomer(@PathVariable final Long id) {
         customerService.delete(id);
         return ResponseEntity.noContent().build();
     }

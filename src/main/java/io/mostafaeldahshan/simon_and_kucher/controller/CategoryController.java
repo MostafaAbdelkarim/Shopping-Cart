@@ -35,18 +35,18 @@ public class CategoryController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoryDTO> getCategory(@PathVariable final UUID id) {
+    public ResponseEntity<CategoryDTO> getCategory(@PathVariable final Long id) {
         return ResponseEntity.ok(categoryService.get(id));
     }
 
     @PostMapping
     @ApiResponse(responseCode = "201")
-    public ResponseEntity<UUID> createCategory(@RequestBody @Valid final CategoryDTO categoryDTO) {
+    public ResponseEntity<Long> createCategory(@RequestBody @Valid final CategoryDTO categoryDTO) {
         return new ResponseEntity<>(categoryService.create(categoryDTO), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> updateCategory(@PathVariable final UUID id,
+    public ResponseEntity<Void> updateCategory(@PathVariable final Long id,
             @RequestBody @Valid final CategoryDTO categoryDTO) {
         categoryService.update(id, categoryDTO);
         return ResponseEntity.ok().build();
@@ -54,7 +54,7 @@ public class CategoryController {
 
     @DeleteMapping("/{id}")
     @ApiResponse(responseCode = "204")
-    public ResponseEntity<Void> deleteCategory(@PathVariable final UUID id) {
+    public ResponseEntity<Void> deleteCategory(@PathVariable final Long id) {
         categoryService.delete(id);
         return ResponseEntity.noContent().build();
     }

@@ -33,26 +33,26 @@ public class CustomerService {
                 .collect(Collectors.toList());
     }
 
-    public CustomerDTO get(final UUID id) {
+    public CustomerDTO get(final Long id) {
         return customerRepository.findById(id)
                 .map(customer -> mapToDTO(customer, new CustomerDTO()))
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public UUID create(final CustomerDTO customerDTO) {
+    public Long create(final CustomerDTO customerDTO) {
         final Customer customer = new Customer();
         mapToEntity(customerDTO, customer);
         return customerRepository.save(customer).getId();
     }
 
-    public void update(final UUID id, final CustomerDTO customerDTO) {
+    public void update(final Long id, final CustomerDTO customerDTO) {
         final Customer customer = customerRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         mapToEntity(customerDTO, customer);
         customerRepository.save(customer);
     }
 
-    public void delete(final UUID id) {
+    public void delete(final Long id) {
         customerRepository.deleteById(id);
     }
 

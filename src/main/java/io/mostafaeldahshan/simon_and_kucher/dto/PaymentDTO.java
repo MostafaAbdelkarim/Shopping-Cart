@@ -24,11 +24,11 @@ public class PaymentDTO {
     @Size(max = 255)
     private String transactionId;
 
-    private UUID customerOrderId;
+    private Long customerOrderId;
 
-    private UUID customerId;
+    private Long customerId;
 
     @NotNull
-    private UUID paymentCustomer;
+    private Long paymentCustomer;
 
 }

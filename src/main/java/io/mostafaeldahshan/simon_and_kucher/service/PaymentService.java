@@ -39,7 +39,7 @@ public class PaymentService {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
 
-    public UUID create(final PaymentDTO paymentDTO) {
+    public Long create(final PaymentDTO paymentDTO) {
         final Payment payment = new Payment();
         mapToEntity(paymentDTO, payment);
         return paymentRepository.save(payment).getId();

@@ -11,6 +11,8 @@ import lombok.Setter;
 @Setter
 public class CustomerDTO {
 
+    @NotNull
+    @Size(max = 255)
     private Long id;
 
     @NotNull
@@ -42,6 +44,6 @@ public class CustomerDTO {
     private String street;
 
     @NotNull
-    private UUID customerOrder;
+    private Long customerOrder;
 
 }
